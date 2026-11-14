@@ -4,12 +4,10 @@ const { extension_settings } = typeof self.SillyTavern !== 'undefined' ? self.Si
 const _i18nScriptUrl = import.meta.url;
 const _i18nMatch = _i18nScriptUrl.match(/extensions\/(third-party\/[^/]+)\//);
 const _i18nExtensionFolderPath = _i18nMatch ? `scripts/extensions/${_i18nMatch[1]}` : 'scripts/extensions/third-party/Dooms-Enhancement-Suite';
-// English-only: the ru/zh-tw locales were dropped (the vast majority of the
-// UI was never keyed for translation). The string table (en.json) and the
-// data-i18n-* application mechanism remain.
+// Chinese localization is now the default locale, with graceful fallback to English.
 class Internationalization {
     constructor() {
-        this.currentLanguage = 'en';
+        this.currentLanguage = 'zh-CN';
         this.translations = {};
     }
     async init() {
@@ -21,7 +19,10 @@ class Internationalization {
         try {
             const response = await fetch(fetchUrl);
             if (!response.ok) {
-                console.error(`[Dooms-Tracker-i18n] Failed to load translation file for ${lang}. Status: ${response.status}`);
+                console.warn(`[Dooms-Tracker-i18n] Failed to load ${lang}, falling back to en`);
+                if (lang !== 'en') {
+                    await this.loadTranslations('en');
+                }
                 return;
             }
             this.translations = await response.json();
