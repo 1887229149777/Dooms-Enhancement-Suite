@@ -280,7 +280,7 @@
                     <div class="rpg-setting-row">
                         <div class="rpg-setting-label-group">
                             <span class="rpg-setting-label">在场角色面板</span>
-                            <span class="rpg-setting-hint">可在下方“在场角色���区域中自定义</span>
+                            <span class="rpg-setting-hint">可在下方“在场角色区域”中自定义</span>
                         </div>
                         <label class="rpg-toggle-switch">
                             <input type="checkbox" id="rpg-toggle-portrait-bar" />
@@ -389,7 +389,7 @@
                             <option value="console">操作台——信息 HUD</option>
                             <option value="lumen">光晕——毛玻璃</option>
                             <option value="arcade">街机——视觉小说 HUD</option>
-                            <option value="inked">墨绘——图像小说面板</option>
+                            <option value="inked">墨绘——图像小���面板</option>
                         </select>
                     </div>
                     <div class="rpg-setting-row">
@@ -471,6 +471,488 @@
                             </div>
                         </div>
                     </div>
+                    <details class="rpg-subsection-collapse" id="rpg-cb-subsection">
+                        <summary class="rpg-subsection-collapse-header">
+                            <span><i class="fa-solid fa-comments" aria-hidden="true"></i> 聊天气泡 <span class="rpg-accordion-badge" id="rpg-cb-badge">关闭</span></span>
+                            <i class="fa-solid fa-chevron-down rpg-subsection-chevron"></i>
+                        </summary>
+                        <div class="rpg-subsection-collapse-body">
+                            <div class="rpg-subsection-label">模式</div>
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">气泡样式</span>
+                                    <span class="rpg-setting-hint">将消息拆分为每个角色的气泡</span>
+                                </div>
+                                <select id="rpg-cb-bubble-mode" class="rpg-accordion-select">
+                                    <option value="off">关闭</option>
+                                    <option value="discord">Discord 风格</option>
+                                    <option value="cards">卡片风格</option>
+                                </select>
+                            </div>
+                            <div class="rpg-subsection-label">气泡外观</div>
+                            <div class="rpg-setting-row">
+                                <span class="rpg-setting-label">显示头像</span>
+                                <label class="rpg-toggle-switch">
+                                    <input type="checkbox" id="rpg-cb-show-avatars" />
+                                    <span class="rpg-toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">跳过样式化 GFX 块</span>
+                                    <span class="rpg-setting-hint">适用于没有 GFX 标记的预设；如果样式化叙述被跳过，可关闭</span>
+                                </div>
+                                <label class="rpg-toggle-switch">
+                                    <input type="checkbox" id="rpg-cb-skip-styled-divs" />
+                                    <span class="rpg-toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="rpg-setting-row">
+                                <span class="rpg-setting-label">隐藏 ST 角色头像</span>
+                                <label class="rpg-toggle-switch">
+                                    <input type="checkbox" id="rpg-cb-hide-st-avatar" />
+                                    <span class="rpg-toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="rpg-setting-row">
+                                <span class="rpg-setting-label">显示作者名</span>
+                                <label class="rpg-toggle-switch">
+                                    <input type="checkbox" id="rpg-cb-show-author-names" />
+                                    <span class="rpg-toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="rpg-setting-row">
+                                <span class="rpg-setting-label">显示叙述者标签</span>
+                                <label class="rpg-toggle-switch">
+                                    <input type="checkbox" id="rpg-cb-show-narrator-label" />
+                                    <span class="rpg-toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="rpg-setting-row">
+                                <span class="rpg-setting-label">斜体叙述者文本</span>
+                                <label class="rpg-toggle-switch">
+                                    <input type="checkbox" id="rpg-cb-narrator-italic" />
+                                    <span class="rpg-toggle-slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="rpg-subsection-label">气泡颜色</div>
+                            <div class="rpg-setting-row">
+                                <span class="rpg-setting-label">叙述者文本</span>
+                                <input type="color" id="rpg-cb-narrator-color" class="rpg-color-swatch" value="#999999" />
+                            </div>
+                            <div class="rpg-setting-row">
+                                <span class="rpg-setting-label">未知说话者</span>
+                                <input type="color" id="rpg-cb-unknown-color" class="rpg-color-swatch" value="#aaaaaa" />
+                            </div>
+                            <div class="rpg-setting-row">
+                                <span class="rpg-setting-label">强调 / 边框</span>
+                                <input type="color" id="rpg-cb-accent-color" class="rpg-color-swatch" value="#e94560" />
+                            </div>
+                            <div class="rpg-setting-row">
+                                <span class="rpg-setting-label">背景色调</span>
+                                <input type="color" id="rpg-cb-bg-tint" class="rpg-color-swatch" value="#1a1a2e" />
+                            </div>
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">背景不透明度</span>
+                                </div>
+                                <div class="rpg-slider-group">
+                                    <input type="range" id="rpg-cb-bg-opacity" class="rpg-range-slider" min="0" max="30"
+                                        value="5" />
+                                    <span id="rpg-cb-bg-opacity-value" class="rpg-slider-value">5%</span>
+                                </div>
+                            </div>
+
+                            <div class="rpg-subsection-label">气泡大小</div>
+                            <p class="rpg-note-text" style="color:#e94560; margin-top:2px; margin-bottom:6px;">警告：更改这些设置会消耗较多资源，尤其在长聊天记录里可能导致卡顿。</p>
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">字体大小</span>
+                                </div>
+                                <div class="rpg-slider-group">
+                                    <input type="range" id="rpg-cb-font-size" class="rpg-range-slider" min="60" max="120"
+                                        value="92" />
+                                    <span id="rpg-cb-font-size-value" class="rpg-slider-value">92%</span>
+                                </div>
+                            </div>
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">头像大小</span>
+                                </div>
+                                <div class="rpg-slider-group">
+                                    <input type="range" id="rpg-cb-avatar-size" class="rpg-range-slider" min="24" max="120"
+                                        value="40" />
+                                    <span id="rpg-cb-avatar-size-value" class="rpg-slider-value">40px</span>
+                                </div>
+                            </div>
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">边框半径</span>
+                                </div>
+                                <div class="rpg-slider-group">
+                                    <input type="range" id="rpg-cb-border-radius" class="rpg-range-slider" min="0" max="20"
+                                        value="6" />
+                                    <span id="rpg-cb-border-radius-value" class="rpg-slider-value">6px</span>
+                                </div>
+                            </div>
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">说话者间距</span>
+                                </div>
+                                <div class="rpg-slider-group">
+                                    <input type="range" id="rpg-cb-spacing" class="rpg-range-slider" min="0" max="24"
+                                        value="12" />
+                                    <span id="rpg-cb-spacing-value" class="rpg-slider-value">12px</span>
+                                </div>
+                            </div>
+
+                            <button id="rpg-cb-reset" class="rpg-accordion-action-btn" type="button">
+                                <i class="fa-solid fa-rotate-left"></i> 恢复聊天气泡默认值
+                            </button>
+                        </div>
+                    </details>
+                    <details class="rpg-subsection-collapse" id="rpg-ib-subsection">
+                        <summary class="rpg-subsection-collapse-header">
+                            <span><i class="fa-solid fa-film" aria-hidden="true"></i> 内联横幅 <span class="rpg-accordion-badge" id="rpg-ib-badge">关闭</span></span>
+                            <i class="fa-solid fa-chevron-down rpg-subsection-chevron"></i>
+                        </summary>
+                        <div class="rpg-subsection-collapse-body">
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">启用内联横幅</span>
+                                    <span class="rpg-setting-hint">当故事切换到新地点或消息之间发生时间跳跃时，在聊天中显示电影化过渡卡片。无需 API 调用——直接读取现有追踪器数据。</span>
+                                </div>
+                                <label class="rpg-toggle-switch">
+                                    <input type="checkbox" id="rpg-ib-toggle" />
+                                    <span class="rpg-toggle-slider"></span>
+                                </label>
+                            </div>
+
+                            <div id="rpg-ib-options">
+                                <div class="rpg-subsection-label">样式</div>
+                                <div class="rpg-setting-row">
+                                    <div class="rpg-setting-label-group">
+                                        <span class="rpg-setting-label">横幅样式</span>
+                                        <span class="rpg-setting-hint">选择消息之间过渡卡片的外观</span>
+                                    </div>
+                                    <select id="rpg-ib-style" class="rpg-accordion-select">
+                                        <option value="cinematic">电影化（全宽横幅）</option>
+                                        <option value="minimal">简约（居中线条）</option>
+                                        <option value="hybrid">混合（圆角胶囊）</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                    <details class="rpg-subsection-collapse" id="rpg-glint-subsection">
+                        <summary class="rpg-subsection-collapse-header">
+                            <span><i class="fa-solid fa-wand-sparkles" aria-hidden="true"></i> 闪光词 <span class="rpg-accordion-badge" id="rpg-glint-badge">关闭</span></span>
+                            <i class="fa-solid fa-chevron-down rpg-subsection-chevron"></i>
+                        </summary>
+                        <div class="rpg-subsection-collapse-body">
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">启用闪光词</span>
+                                    <span class="rpg-setting-hint">你列出的单词会在聊天消息中发光。新消息加载完成后，每个词都会播放特效，然后保持颜色。仅影响你的屏幕，AI 看到的文本保持不变。</span>
+                                </div>
+                                <label class="rpg-toggle-switch">
+                                    <input type="checkbox" id="rpg-glint-toggle" />
+                                    <span class="rpg-toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">仍然播放动画</span>
+                                    <span class="rpg-setting-hint">即使性能模式或系统减弱动画设置已停用其他动画，也保持闪光效果继续移动。</span>
+                                </div>
+                                <label class="rpg-toggle-switch">
+                                    <input type="checkbox" id="rpg-glint-animate-always" />
+                                    <span class="rpg-toggle-slider"></span>
+                                </label>
+                            </div>
+                            <p class="rpg-glint-motion-note" id="rpg-glint-motion-note" role="status" hidden></p>
+                            <p class="rpg-setting-hint rpg-glint-help">用逗号分隔单词。短语如 <em>the Iron Crown</em> 视为一个词。匹配忽略大小写，并且只命中整个单词，所以请列出你想匹配的每种形式（例如 <em>flame, flames</em>）。点击预览可重放其效果。</p>
+                            <div id="rpg-glint-groups" class="rpg-glint-groups"></div>
+                            <div class="rpg-glint-add">
+                                <button type="button" class="rpg-btn" id="rpg-glint-add-group">
+                                    <i class="fa-solid fa-plus" aria-hidden="true"></i> 新建分组
+                                </button>
+                                <select id="rpg-glint-add-preset" class="rpg-accordion-select" aria-label="Add a preset group">
+                                    <option value="">添加预设分组…</option>
+                                </select>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- ═══════ 当前角色面板 ═══════ -->
+            <div class="rpg-accordion-section" data-accordion="portrait-bar">
+                <div class="rpg-accordion-header">
+                    <i class="fa-solid fa-users rpg-accordion-icon"></i>
+                    <span class="rpg-accordion-title">在场角色面板</span>
+                    <span class="rpg-accordion-badge" id="rpg-pb-badge">开启</span>
+                    <i class="fa-solid fa-chevron-down rpg-accordion-chevron"></i>
+                </div>
+                <div class="rpg-accordion-body">
+                    <details class="rpg-subsection-collapse">
+                        <summary class="rpg-subsection-collapse-header">
+                            <span>工作坊</span>
+                            <i class="fa-solid fa-chevron-down rpg-subsection-chevron"></i>
+                        </summary>
+                        <div class="rpg-subsection-collapse-body">
+                            <div class="rpg-setting-row">
+                                <button id="rpg-open-character-roster" class="rpg-accordion-action-btn" type="button">
+                                    <i class="fa-solid fa-users-rectangle"></i> 打开角色名册
+                                </button>
+                            </div>
+                            <p class="rpg-note-text" style="margin-top:4px;">浏览每个角色、编辑一个角色或新增一个角色。点击后会打开角色工作坊。</p>
+                        </div>
+                    </details>
+                    <details class="rpg-subsection-collapse">
+                        <summary class="rpg-subsection-collapse-header">
+                            <span>布局</span>
+                            <i class="fa-solid fa-chevron-down rpg-subsection-chevron"></i>
+                        </summary>
+                        <div class="rpg-subsection-collapse-body">
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">位置</span>
+                                    <span class="rpg-setting-hint">头像栏出现在什么位置</span>
+                                </div>
+                                <select id="rpg-portrait-position" class="rpg-accordion-select">
+                                    <option value="above">输入框上方</option>
+                                    <option value="below">输入框下方</option>
+                                    <option value="top">屏幕顶部</option>
+                                    <option value="left">左侧</option>
+                                    <option value="right">右侧</option>
+                                </select>
+                            </div>
+                            <div id="rpg-pb-side-options" style="display:none;">
+                                <div class="rpg-setting-row">
+                                    <div class="rpg-setting-label-group">
+                                        <span class="rpg-setting-label">列数</span>
+                                        <span class="rpg-setting-hint">卡片网格宽度——1 会使栏更窄，2 可在每行容纳更多角色。</span>
+                                    </div>
+                                    <select id="rpg-pb-side-columns" class="rpg-accordion-select">
+                                        <option value="1">1 列宽</option>
+                                        <option value="2">2 列宽</option>
+                                    </select>
+                                </div>
+                                <div class="rpg-setting-row">
+                                    <div class="rpg-setting-label-group">
+                                        <span class="rpg-setting-label">面板高度</span>
+                                        <span class="rpg-setting-hint">自动适应角色数量并垂直居中；完整高度会拉伸到顶部到底部。</span>
+                                    </div>
+                                    <select id="rpg-pb-side-height" class="rpg-accordion-select">
+                                        <option value="auto">自动（适应内容）</option>
+                                        <option value="full">全高</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">对齐方式</span>
+                                    <span class="rpg-setting-hint">头像在栏中的位置</span>
+                                </div>
+                                <select id="rpg-portrait-alignment" class="rpg-accordion-select">
+                                    <option value="left">内联（左对齐）</option>
+                                    <option value="center">居中</option>
+                                </select>
+                            </div>
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">显示标题</span>
+                                    <span class="rpg-setting-hint">“在场角色”标题行</span>
+                                </div>
+                                <label class="rpg-toggle-switch">
+                                    <input type="checkbox" id="rpg-pb-show-header" />
+                                    <span class="rpg-toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">显示缺席角色</span>
+                                    <span class="rpg-setting-hint">灰色显示不在场景中的角色</span>
+                                </div>
+                                <label class="rpg-toggle-switch">
+                                    <input type="checkbox" id="rpg-pb-show-absent" />
+                                    <span class="rpg-toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">在 PCP 中显示用户</span>
+                                    <span class="rpg-setting-hint">将当前用户角色（玩家角色）作为卡片显示在在场角色面板中。会从当前 SillyTavern 角色中自动解析。</span>
+                                </div>
+                                <label class="rpg-toggle-switch">
+                                    <input type="checkbox" id="rpg-pb-show-user" />
+                                    <span class="rpg-toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">显示滚动箭头</span>
+                                    <span class="rpg-setting-hint">悬停时显示左右箭头</span>
+                                </div>
+                                <label class="rpg-toggle-switch">
+                                    <input type="checkbox" id="rpg-pb-show-arrows" />
+                                    <span class="rpg-toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">自动导入头像</span>
+                                    <span class="rpg-setting-hint">将角色匹配到 SillyTavern 角色卡</span>
+                                </div>
+                                <label class="rpg-toggle-switch">
+                                    <input type="checkbox" id="rpg-pb-auto-import" />
+                                    <span class="rpg-toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="rpg-subsection-collapse">
+                        <summary class="rpg-subsection-collapse-header rpg-subsection-with-info">
+                            <span>表情</span>
+                            <button type="button" class="rpg-section-info-btn" id="rpg-expressions-info-btn"
+                                aria-label="帮助：表情" aria-expanded="false">
+                                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                            </button>
+                            <div class="rpg-section-info-popup" id="rpg-expressions-info-popup" hidden>
+                                <h5>DES 处理表情</h5>
+                                <p>你<strong>不需要</strong> SillyTavern 单独的 <em>Expressions</em> 扩展。开启 <strong>按角色表情</strong> 后，DES 会在每一回合给每个角色分类情绪，并把匹配的精灵贴到头像卡片上。</p>
+                                <p>若你选择 <strong>自动生成头像</strong> 作为头像来源，DES 会跳过精灵分类，而是要求模型生成私有头像提示词，然后通过 SillyTavern 原生的 <code>/sd</code> 图像生成。</p>
+                                <h5>如何为角色添加精灵</h5>
+                                <ol>
+                                    <li>在 <strong>角色工作坊</strong> 中打开角色，进入 <strong>外貌</strong> 选项卡。</li>
+                                    <li>点击 <strong>打开表情文件夹</strong>。</li>
+                                    <li>直接将图像文件拖到该文件夹中（不要放到子文件夹里）。<code>.png</code> 和 <code>.webp</code> 都可。命名应与分类器输出的情绪一致：<code>joy</code>、<code>sadness</code>、<code>annoyance</code>、<code>optimism</code>、<code>neutral</code>、<code>love</code>、<code>nervousness</code>、<code>relief</code>、<code>remorse</code>、<code>realization</code>、<code>surprise</code> 等，例如 <code>joy.webp</code>、<code>sadness.png</code>。</li>
+                                    <li>重新加载 SillyTavern。下一条 AI 消息将自动开始切换精灵。</li>
+                                </ol>
+                                <p class="rpg-section-info-tip"><i class="fa-solid fa-lightbulb"></i> 在下方打开 <strong>在工具提示中显示表情</strong>，即可在悬停头像时查看实际选中的标签。</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-down rpg-subsection-chevron"></i>
+                        </summary>
+                        <div class="rpg-subsection-collapse-body">
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">按角色表情</span>
+                                    <span class="rpg-setting-hint">启用动态头像更新，可使用表情精灵或自动生成头像</span>
+                                </div>
+                                <label class="rpg-toggle-switch">
+                                    <input type="checkbox" id="rpg-pb-sync-expressions" />
+                                    <span class="rpg-toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div id="rpg-expression-options" style="display:none;">
+                                <div class="rpg-setting-row">
+                                    <div class="rpg-setting-label-group">
+                                        <span class="rpg-setting-label">头像来源</span>
+                                        <span class="rpg-setting-hint">使用表情精灵或通过 SillyTavern 原生 /sd 命令生成头像</span>
+                                    </div>
+                                    <select id="rpg-portrait-enhancement-mode" class="rpg-accordion-select">
+                                        <option value="expressions">表情精灵</option>
+                                        <option value="autoPortraits">自动生成头像</option>
+                                    </select>
+                                </div>
+                                <div id="rpg-auto-portrait-options" style="display:none;">
+                                    <div class="rpg-setting-row">
+                                        <div class="rpg-setting-label-group">
+                                            <span class="rpg-setting-label">自动头像模式</span>
+                                            <span class="rpg-setting-hint">DES 何时生成或刷新在场角色头像</span>
+                                        </div>
+                                        <select id="rpg-auto-portrait-mode" class="rpg-accordion-select">
+                                            <option value="only_missing">仅缺失时</option>
+                                            <option value="state_changed">状态改变时</option>
+                                            <option value="every_reply">每条回复</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div id="rpg-expression-sprite-options">
+                                    <div class="rpg-setting-row">
+                                        <div class="rpg-setting-label-group">
+                                            <span class="rpg-setting-label">分类器 API</span>
+                                            <span class="rpg-setting-hint">如何识别角色情绪</span>
+                                        </div>
+                                        <select id="rpg-expression-classifier-api" class="rpg-accordion-select">
+                                            <option value="local">本地（BERT）——免费、离线</option>
+                                            <option value="llm">LLM（主 API）——更准确</option>
+                                        </select>
+                                    </div>
+                                    <div id="rpg-expression-batch-row" class="rpg-setting-row" style="display:none;">
+                                        <div class="rpg-setting-label-group">
+                                            <span class="rpg-setting-label">批量分类</span>
+                                            <span class="rpg-setting-hint">在一次 LLM 调用中分类全部角色（节省 token）</span>
+                                        </div>
+                                        <label class="rpg-toggle-switch">
+                                            <input type="checkbox" id="rpg-expression-batch-mode" />
+                                            <span class="rpg-toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">隐藏默认表情显示</span>
+                                    <span class="rpg-setting-hint">隐藏 SillyTavern 自带的表情显示</span>
+                                </div>
+                                <label class="rpg-toggle-switch">
+                                    <input type="checkbox" id="rpg-pb-hide-default-expressions" />
+                                    <span class="rpg-toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">在工具提示中显示表情</span>
+                                    <span class="rpg-setting-hint">悬停头像卡片时显示“名称 — 表情”，当精灵生效时</span>
+                                </div>
+                                <label class="rpg-toggle-switch">
+                                    <input type="checkbox" id="rpg-pb-show-expression-in-tooltip" />
+                                    <span class="rpg-toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </details>
+
+                    <div class="rpg-setting-row" style="display:none;" aria-hidden="true">
+                        <div class="rpg-setting-label-group">
+                            <span class="rpg-setting-label">按聊天角色追踪</span>
+                            <span class="rpg-setting-hint">角色和已移除列表按聊天记录进行跟踪，而不是全局跟踪</span>
+                        </div>
+                        <label class="rpg-toggle-switch">
+                            <input type="checkbox" id="rpg-pb-per-chat-tracking" />
+                            <span class="rpg-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <details class="rpg-subsection-collapse">
+                        <summary class="rpg-subsection-collapse-header">
+                            <span>头像</span>
+                            <i class="fa-solid fa-chevron-down rpg-subsection-chevron"></i>
+                        </summary>
+                        <div class="rpg-subsection-collapse-body">
+                            <div class="rpg-setting-row">
+                                <div class="rpg-setting-label-group">
+                                    <span class="rpg-setting-label">导出头像</span>
+                                    <span class="rpg-setting-hint">将所有已上传的角色头像以单独图片文件压缩为 zip 下载</span>
+                                </div>
+                                <button id="rpg-export-portraits" class="rpg-accordion-action-btn" type="button"
+                                    style="width:auto; flex-shrink:0;">
+                                    <i class="fa-solid fa-download"></i> 导出
+                                </button>
+                            </div>
+                        </div>
+                    </details>
+                    <details class="rpg-subsection-collapse">
+                        <summary class="rpg-subsection-collapse-header">
+                            <span>卡片大小</span>
+                            <i class="fa-solid fa-chevron-down rpg-subsection-chevron"></i>
+                        </summary>
+                        <div class="rpg-subsection-collapse-body">
+                        </div>
+                    </details>
                 </div>
             </div>
         </div>
